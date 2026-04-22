@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/jojoslice/pokedexcli/internal"
 )
@@ -81,7 +83,9 @@ func commandExplore(_ *config, args []string) error {
 		fmt.Println("Usage: Explore <area name>")
 		return nil
 	}
+
 	areaName := args[0]
+
 	res, err := internal.GetLocationArea(url, areaName)
 	if err != nil {
 		fmt.Println(err)
@@ -93,4 +97,39 @@ func commandExplore(_ *config, args []string) error {
 	}
 
 	return nil
+}
+
+func commandCatch(_ *config, args []string) error {
+	if len(args) == 0 {
+		fmt.Println("Usage: Catch <pokemon name>")
+		return nil
+	}
+
+	pokemonName := args[0]
+
+	res, err := internal.GetPokemon(pokemonName)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	fmt.Println("Throwing a Pokeball at " + res.Name + "...")
+	time.Sleep(time.Second)
+
+	baseExp := res.BaseExperience
+	chance := catchChance(baseExp)
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	if r.Float64() < chance {
+		fmt.Println(res.Name + " escaped!")
+		return nil
+	}
+
+	fmt.Println(res.Name + " was cought!")
+	coughtPokemon[res.Name] = res
+	return nil
+}
+
+func catchChance(baseExp int) float64 {
+	return 1.0 / (1.0 + float64(baseExp)/100.0)
 }

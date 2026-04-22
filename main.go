@@ -23,6 +23,8 @@ type config struct {
 
 var commands map[string]cliCommand
 
+var coughtPokemon map[string]internal.Pokemon
+
 func init() {
 	commands = map[string]cliCommand{
 		"exit": {
@@ -47,8 +49,13 @@ func init() {
 		},
 		"explore": {
 			name:        "explore",
-			description: "Explore the pokemon in the area",
+			description: "Explore the pokemon in the choosen area",
 			callback:    commandExplore,
+		},
+		"catch": {
+			name:        "catch",
+			description: "Try to catch a pokemon",
+			callback:    commandCatch,
 		},
 	}
 }

@@ -167,6 +167,111 @@ type Version struct {
 }
 
 type Pokemon struct {
+	ID                   int                `json:"id"`
+	Name                 string             `json:"name"`
+	BaseExperience       int                `json:"base_experience"`
+	Height               int                `json:"height"`
+	IsDefault            bool               `json:"is_default"`
+	Order                int                `json:"order"`
+	Weight               int                `json:"weight"`
+	Abilities            []PokemonAbility   `json:"abilities"`
+	Forms                []PokemonForm      `json:"forms"`
+	GameIndices          []VersionGameIndex `json:"game_indices"`
+	HeldItems            []PokemonHeldItem  `json:"held_items"`
+	LocationAreaEncounters string           `json:"location_area_encounters"`
+	Moves                []PokemonMove      `json:"moves"`
+	Species              PokemonSpecies     `json:"species"`
+	Sprites              PokemonSprites     `json:"sprites"`
+	Stats                []PokemonStat      `json:"stats"`
+	Types                []PokemonType      `json:"types"`
+}
+
+type PokemonAbility struct {
+	IsHidden bool    `json:"is_hidden"`
+	Slot     int     `json:"slot"`
+	Ability  Ability `json:"ability"`
+}
+
+type VersionGameIndex struct {
+	GameIndex int     `json:"game_index"`
+	Version   Version `json:"version"`
+}
+
+type PokemonHeldItem struct {
+	Item           Item                       `json:"item"`
+	VersionDetails []PokemonHeldItemVersion   `json:"version_details"`
+}
+
+type PokemonHeldItemVersion struct {
+	Rarity  int     `json:"rarity"`
+	Version Version `json:"version"`
+}
+
+type PokemonMove struct {
+	Move                Move                 `json:"move"`
+	VersionGroupDetails []PokemonMoveVersion `json:"version_group_details"`
+}
+
+type PokemonMoveVersion struct {
+	LevelLearnedAt  int             `json:"level_learned_at"`
+	VersionGroup    VersionGroup    `json:"version_group"`
+	MoveLearnMethod MoveLearnMethod `json:"move_learn_method"`
+	Order           int             `json:"order"`
+}
+
+type PokemonSprites struct {
+	BackDefault      string `json:"back_default"`
+	BackFemale       string `json:"back_female"`
+	BackShiny        string `json:"back_shiny"`
+	BackShinyFemale  string `json:"back_shiny_female"`
+	FrontDefault     string `json:"front_default"`
+	FrontFemale      string `json:"front_female"`
+	FrontShiny       string `json:"front_shiny"`
+	FrontShinyFemale string `json:"front_shiny_female"`
+}
+
+type PokemonStat struct {
+	Stat     Stat `json:"stat"`
+	Effort   int  `json:"effort"`
+	BaseStat int  `json:"base_stat"`
+}
+
+type PokemonType struct {
+	Slot int         `json:"slot"`
+	Type PokemonTypeResource `json:"type"`
+}
+
+type Ability struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type PokemonForm struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type Item struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type Move struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type MoveLearnMethod struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type Stat struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type PokemonTypeResource struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
 }
