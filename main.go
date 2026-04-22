@@ -26,6 +26,7 @@ var commands map[string]cliCommand
 var coughtPokemon map[string]internal.Pokemon
 
 func init() {
+	coughtPokemon = make(map[string]internal.Pokemon)
 	commands = map[string]cliCommand{
 		"exit": {
 			name:        "exit",
