@@ -63,6 +63,11 @@ func init() {
 			description: "View the stats of a pokemon",
 			callback:    commandInspect,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "View the Pokedex",
+			callback:    commandPokedex,
+		},
 	}
 }
 

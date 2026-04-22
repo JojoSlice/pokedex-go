@@ -1,0 +1,9 @@
+# Binary
+pokedexcli
+
+# Logs
+*.log
+
+# Claude Code
+.claude/
+memory/

@@ -163,3 +163,17 @@ func commandInspect(_ *config, args []string) error {
 
 	return nil
 }
+
+func commandPokedex(_ *config, _ []string) error {
+	fmt.Println("Your Pokedex:")
+	if len(coughtPokemon) == 0 {
+		fmt.Println("  - Is empty!.")
+		return nil
+	}
+
+	for _, p := range coughtPokemon {
+		fmt.Println("  - " + p.Name)
+	}
+
+	return nil
+}
